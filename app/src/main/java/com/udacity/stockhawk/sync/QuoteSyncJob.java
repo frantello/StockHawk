@@ -35,7 +35,7 @@ public final class QuoteSyncJob {
     private static final int PERIOD = 300000;
     private static final int INITIAL_BACKOFF = 10000;
     private static final int PERIODIC_ID = 1;
-    private static final int YEARS_OF_HISTORY = 2;
+    private static final int YEARS_OF_HISTORY = 1;
 
     private QuoteSyncJob() {
     }
@@ -61,7 +61,7 @@ public final class QuoteSyncJob {
                 return;
             }
 
-            Map<String, Stock> quotes = YahooFinance.get(stockArray);
+            Map<String, Stock> quotes = YahooFinance.get(stockArray, true);
             Iterator<String> iterator = stockCopy.iterator();
 
             Timber.d(quotes.toString());
