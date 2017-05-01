@@ -60,6 +60,8 @@ dependencies {
     compile 'com.google.guava:guava:20.0'
     compile 'com.yahoofinance-api:YahooFinanceAPI:3.6.1'
     compile 'com.jakewharton.timber:timber:4.5.1'
-    compile 'com.opencsv:opencsv:3.9'
+    compile ('com.opencsv:opencsv:3.9') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+    }
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 }
