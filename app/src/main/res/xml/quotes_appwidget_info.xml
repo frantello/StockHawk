@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/widget_quotes"
+    android:previewImage="@drawable/stock_widget"
+    android:resizeMode="vertical|horizontal"
+    android:minWidth="@dimen/widget_stocks_width"
+    android:minHeight="@dimen/widget_stocks_height"
+    android:minResizeWidth="@dimen/widget_stocks_width"
+    android:minResizeHeight="@dimen/widget_stocks_height"
+    android:widgetCategory="home_screen"
+    android:updatePeriodMillis="0"/>
