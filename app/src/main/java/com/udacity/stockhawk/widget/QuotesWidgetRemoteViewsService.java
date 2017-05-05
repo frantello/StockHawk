@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Binder;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
+import com.udacity.stockhawk.ui.HistoryActivity;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -31,6 +33,8 @@ public class QuotesWidgetRemoteViewsService extends RemoteViewsService {
 
     private static class QuotesWidgetRemoteViewsFactory implements RemoteViewsFactory {
 
+        public static final String TAG = "QuotesWidgetAdapter";
+
         private Context context;
         private int appWidgetId;
         private Cursor data;
@@ -41,6 +45,7 @@ public class QuotesWidgetRemoteViewsService extends RemoteViewsService {
             appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                     AppWidgetManager.INVALID_APPWIDGET_ID);
 
+            Log.d(TAG, "Rendered widget id: " + appWidgetId);
         }
 
         @Override
@@ -49,8 +54,6 @@ public class QuotesWidgetRemoteViewsService extends RemoteViewsService {
         }
 
         private void initData() {
-
-            closeGracefully();
 
             ContentResolver resolver = context.getContentResolver();
 
@@ -68,7 +71,7 @@ public class QuotesWidgetRemoteViewsService extends RemoteViewsService {
 
         @Override
         public void onDataSetChanged() {
-             initData();
+            initData();
         }
 
         @Override
@@ -105,6 +108,11 @@ public class QuotesWidgetRemoteViewsService extends RemoteViewsService {
                                 ContextCompat.getColor(context, R.color.material_red_700) :
                                 ContextCompat.getColor(context, R.color.material_green_700)
                 );
+
+                Intent fillInIntent = new Intent();
+                fillInIntent.putExtra(HistoryActivity.QUOTE_SYMBOL_EXTRA, symbol);
+
+                view.setOnClickFillInIntent(R.id.list_item_widget_stock, fillInIntent);
             }
 
             return view;

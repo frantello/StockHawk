@@ -44,7 +44,7 @@ import timber.log.Timber;
 public class HistoryActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String QUOTE_SYMBOL_EXTRA = "HistoryActivity.Symbol";
+    public static final String QUOTE_SYMBOL_EXTRA = "HistoryActivity.Symbol";
 
     private static final int QUOTE_LOADER_ID = 0;
 

@@ -7,11 +7,12 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
+import android.support.v4.app.TaskStackBuilder;
 import android.widget.RemoteViews;
 
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
+import com.udacity.stockhawk.ui.HistoryActivity;
 import com.udacity.stockhawk.ui.MainActivity;
 
 /**
@@ -51,8 +52,19 @@ public class QuotesWidgetProvider extends AppWidgetProvider {
 
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_quotes);
 
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0);
+        remoteViews.setOnClickPendingIntent(R.id.widget_stocks_title, pendingIntent);
+
         remoteViews.setRemoteAdapter(R.id.widget_stocks_list, intent);
         remoteViews.setEmptyView(R.id.widget_stocks_list, R.id.empty_widget_list);
+
+        Intent clickIntentTemplate = new Intent(context, HistoryActivity.class);
+
+        PendingIntent clickPendingIntentTemplate = TaskStackBuilder.create(context)
+                .addNextIntentWithParentStack(clickIntentTemplate)
+                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setPendingIntentTemplate(R.id.widget_stocks_list, clickPendingIntentTemplate);
 
         appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
     }
