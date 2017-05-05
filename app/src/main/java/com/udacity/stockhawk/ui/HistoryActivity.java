@@ -124,7 +124,7 @@ public class HistoryActivity extends AppCompatActivity
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
-        if (data != null && !data.moveToFirst()) {
+        if (data == null || !data.moveToFirst()) {
             return;
         }
 

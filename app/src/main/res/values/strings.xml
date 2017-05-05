@@ -37,6 +37,7 @@
     <string name="activity_history_data_set_label">Quotes</string>
     <string name="title_widget_quotes">Quotes</string>
     <string name="empty_widget_list">No stocks added!</string>
+    
     <string name="a11y_add_stock">Add stock</string>
     <string name="a11y_open_history">Open <xliff:g id="symbol" example="GOOG">%s</xliff:g> history</string>
 
