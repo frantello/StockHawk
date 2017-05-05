@@ -109,6 +109,9 @@ public class QuotesWidgetRemoteViewsService extends RemoteViewsService {
                                 ContextCompat.getColor(context, R.color.material_green_700)
                 );
 
+                view.setContentDescription(R.id.list_item_widget_stock,
+                        context.getString(R.string.a11y_open_history, symbol));
+
                 Intent fillInIntent = new Intent();
                 fillInIntent.putExtra(HistoryActivity.QUOTE_SYMBOL_EXTRA, symbol);
 

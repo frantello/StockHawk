@@ -66,8 +66,8 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
 
         cursor.moveToPosition(position);
 
-
-        holder.symbol.setText(cursor.getString(Contract.Quote.POSITION_SYMBOL));
+        String symbol = cursor.getString(Contract.Quote.POSITION_SYMBOL);
+        holder.symbol.setText(symbol);
         holder.price.setText(dollarFormat.format(cursor.getFloat(Contract.Quote.POSITION_PRICE)));
 
 
@@ -90,7 +90,8 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
             holder.change.setText(percentage);
         }
 
-
+        holder.itemView.setContentDescription(
+                context.getString(R.string.a11y_open_history, symbol));
     }
 
     @Override
